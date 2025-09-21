@@ -88,6 +88,16 @@ python3 tag_cards.py --edh-only --colors B --resume
 python3 tag_cards.py --edh-only --colors G --model gpt-4o
 ```
 
+### batch process mono color
+```bash
+python3 tag_cards.py --edh-only --batch-size 5 --model gpt-5-nano  --output ../output/green_cards.jsonl --colors G
+python3 tag_cards.py --edh-only --batch-size 5 --model gpt-5-nano  --output ../output/blue_cards.jsonl --colors U
+python3 tag_cards.py --edh-only --batch-size 5 --model gpt-5-nano  --output ../output/orzhov_cards.jsonl --colors B W
+python3 tag_cards.py --edh-only --batch-size 5 --model gpt-5-nano  --output ../output/rakdos_cards.jsonl --colors B R
+python3 tag_cards.py --edh-only --batch-size 5 --model gpt-5-nano  --output ../output/boros_cards.jsonl --colors R W
+python3 tag_cards.py --edh-only --batch-size 5 --model gpt-5-nano  --output ../output/golgari_cards.jsonl --colors G B
+```
+
 ## Processing Modes
 
 ### Sequential Mode (Default)
@@ -187,10 +197,8 @@ Results are saved as JSONL (JSON Lines) with each line containing a complete tag
 
 | Model | Speed | Cost | Quality | Best For |
 |-------|-------|------|---------|----------|
-| `gpt-4o-mini` | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | **Default choice** |
-| `gpt-4o` | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ | Highest accuracy |
-| `gpt-4-turbo` | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐ | Balanced |
-| `gpt-3.5-turbo` | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | Speed/cost |
+| `gpt-5o-nano` | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | **Default choice** |
+| `gpt-5o` | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ | Highest accuracy |
 
 ## License
 
