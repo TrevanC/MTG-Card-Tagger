@@ -197,8 +197,35 @@ Results are saved as JSONL (JSON Lines) with each line containing a complete tag
 
 | Model | Speed | Cost | Quality | Best For |
 |-------|-------|------|---------|----------|
-| `gpt-5o-nano` | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | **Default choice** |
-| `gpt-5o` | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ | Highest accuracy |
+| `gpt-5-nano` | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | **Default choice** |
+| `gpt-5` | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ | Highest accuracy |
+
+
+## Experimentation updates
+
+### 9/20/2025
+
+- finalized [tagging taxonomy](src/taxonomy.slim.yaml)
+- finalized [output schema](src/card_tag.slim.schema.json)
+- model of choice: `gpt-5-nano`
+- running parameters `--batch-size 5`
+- collected tags for ~20k cards in about 18 hours
+
+```
+% wc -l output/*.jsonl
+    4303 output/black_cards.jsonl
+    2006 output/blue_cards.jsonl
+     367 output/boros_cards.jsonl
+     347 output/golgari_cards.jsonl
+    4153 output/green_cards.jsonl
+     349 output/orzhov_cards.jsonl
+     438 output/rakdos_cards.jsonl
+    4249 output/red_cards.jsonl
+    4332 output/white_cards.jsonl
+      98 output/WUBRG_cards.jsonl
+   20642 total
+```
+
 
 ## License
 
