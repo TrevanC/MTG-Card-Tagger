@@ -1,0 +1,110 @@
+version: 0.4.4
+updated: 2025-09-20
+notes: >
+  More precise, LLM-friendly descriptions. Clarified boundaries where regex doesn’t help.
+  Tagging guidance: function_primary = choose 1–2; function_secondary = choose 0–4.
+  “+1/+1_counters” strictly means +1/+1 counters (not generic P/T modification or -1/-1 counters).
+  for interaction_axis, interaction means affecting, not just mentioning, mostly removal
+  emphasis that interaction means affecting something somehow
+
+enums:
+
+  function_primary:
+    ramp: { desc: Advances mana ahead of the curve by adding extra mana or lands beyond normal development. Includes permanent ramp (Cultivate, Sol Ring) and burst ramp (Dark Ritual). }
+    card_advantage: { desc: Produces a net increase of cards over time (ongoing) or at resolution (one-shot). Includes repeatable draw, impulse draw, and multi-card selection (Phyrexian Arena, Mulldrifter, Expressive Iteration). }
+    removal: { desc: Dedicated interaction aimed at eliminating threats on board or stack. Includes spot removal, flexible removal, sweepers, exile effects (Doom Blade, Beast Within, Wrath of God). }
+    protection: { desc: Preserves your board/plan from removal, wipes, or disruption. Includes hexproof/indestructible grants, phasing, fogs (Heroic Intervention, Teferi’s Protection). }
+    win_condition: { desc: Primary route to victory in EDH contexts (lethal combat pumps, infinite combos, massive drains/burn). Choose this when the card’s main purpose is closing games (Craterhoof Behemoth, Exsanguinate). }
+    utility: { desc: Flexible glue pieces that solve small problems or smooth game play without being narrowly synergy-driven (Lightning Greaves, Chromatic Lantern, Sylvan Library). }
+    recursion: { desc: Returns resources from graveyard/exile/command zone to hand/battlefield/library (Eternal Witness, Animate Dead, Command Beacon). }
+    tutor: { desc: Searches the library and delivers access/consistency. Includes narrow and broad tutors (Demonic Tutor, Green Sun’s Zenith). }
+    stack_interaction: { desc: Interacts primarily on the stack (countermagic, protection-from-counters, split second tricks) (Counterspell, Veil of Summer). }
+    synergy_support: { desc: Low-curve or role-player pieces that advance a deck’s specific synergy but are not payoffs or engines by themselves (Elvish Visionary in Elf tribal, Chromatic Star in artifacts). }
+    body: { desc: creatures with no other apparent primary function, but still further the player's gameplan by being a body (Serra Angel, Tarmogoyf)}
+
+  function_secondary:
+    mana_fixing: { desc: Improves color access/smoothing without necessarily advancing total mana (Farseek, Chromatic Lantern). }
+    graveyard_hate: { desc: Disrupts graveyards or prevents recursion (Tormod’s Crypt, Rest in Peace). }
+    stax_tax: { desc: Increases costs/limits actions to slow opponents or lock them out (Winter Orb, Sphere of Resistance). }
+    politics: { desc: Creates choice dynamics or incentives among opponents; supports table deals (Phelddagrif, Vow cycle, Tempt with Discovery). }
+    combo_piece: { desc: Functions mainly within a known combo shell; weak standalone, powerful in combination (Kiki-Jiki, Deadeye Navigator, Isochron Scepter). }
+    board_wipe: { desc: Clears multiple permanents (creatures/artifacts/enchantments/lands/planeswalkers) (Austere Command, Damnation). }
+    targeted_removal: { desc: literally removal that is targeted, targeted answer to permanents (Swords to Plowshares, Pongify). }
+    sweep_protection: { desc: Mitigates or dodges mass removal (Boros Charm, Eldrazi Monument). }
+    tempo: { desc: Gains time/initiative without strict card advantage, things like bounce, tap, forced discard  (Remand, Vapor Snag, Mana Leak in EDH pacing). }
+    finisher: { desc: Pushes an already-advantaged position to end the game (Torment of Hailfire, Triumph of the Hordes). }
+    value_engine: { desc: Repeated incremental advantage over turns (Mystic Remora, Outpost Siege, Tireless Tracker). }
+    tax_effects: { desc: Consolidated pillowfort/hatebears—discourages attacks/casts/activations with added costs or restrictions (Ghostly Prison, Thalia, Guardian of Thraben). }
+    combat_trick: { desc: Instant-speed effects designed to swing combat outcomes by boosting stats, granting abilities, or surprising opponents (Giant Growth, Gods Willing, Berserk). }
+
+
+  resource_axis:
+    mana: { desc: Generates/denies mana or manipulates mana production (Llanowar Elves, Armageddon). }
+    cards: { desc: Draws, loots, wheels, or otherwise alters card flow (Rhystic Study, Wheel of Fortune). }
+    life: { desc: Gains or drains life as a resource/payoff (Soul Warden, Exsanguinate). }
+    counters: { desc: Uses counters as a resource on permanents/players (experience, poison, shield) (Atraxa, Inexorable Tide). }
+    tokens: { desc: Creates/uses tokens of any type (creature and noncreature tokens) (Avenger of Zendikar, Parallel Lives). }
+    treasures: { desc: Specifically cares about or produces Treasure tokens (Dockside Extortionist, Revel in Riches). }
+    clues: { desc: Specifically cares about or produces Clue tokens (Tireless Tracker). }
+    food: { desc: Specifically cares about or produces Food tokens (Gilded Goose). }
+    blood: { desc: Specifically cares about or produces Blood tokens (Voldaren Epicure). }
+    lands: { desc: Leans on land count/land play/manipulation beyond mere ramp (Exploration, Valakut, Field of the Dead). }
+    hand: { desc: Affects hand size or contents (Thoughtseize, Reliquary Tower). }
+    library: { desc: Searches/manipulates library structure (Sensei’s Divining Top, Doomsday). }
+    graveyard: { desc: Uses/manipulates graveyards as a resource, needs certain cards or amounts of cards in graveyard to function (Snapcaster Mage, Living Death). }
+    stack: { desc: Interacts with or relies on stack dynamics to work (Flusterstorm). }
+
+  interaction_axis:
+    creatures: { desc: Primarily interacts with creatures. removal, anthems, etc (Doom Blade, Wrath of God). }
+    artifacts: { desc: Primarily interacts with artifacts (Vandalblast, Bane of Progress). }
+    enchantments: { desc: Primarily interacts with enchantments (Back to Nature, Aura Shards). }
+    planeswalkers: { desc: Primarily interacts with planeswalkers (Hero’s Downfall). }
+    lands: { desc: Primarily interacts with lands (Strip Mine, Armageddon). }
+    graveyards: { desc: Primarily interacts with graveyards via reanimation, exiling graveyards, removing cards from graveyard, anything that does not affect the graveyard doesn't count as interaction (Rest in Peace). }
+    spells_on_stack: { desc: Primarily interacts with spells/abilities on the stack (Counterspell, Stifle). }
+    hands: { desc: Primarily interacts with hand contents (Thoughtseize, Windfall). }
+    libraries: { desc: Primarily interacts with libraries (Praetor’s Grasp). }
+
+  target_axis:
+    self: { desc: Aims at you/your permanents more often than at opponents. }
+    opponent: { desc: Aims at opponents/their permanents more often than your own. }
+    all: { desc: Symmetrical effects applying to all players/permanents. }
+    owner: { desc: Refers to the card’s owner (not controller); e.g., effects that return a permanent to its owner. }
+    any: { desc: Flexible targeting where the controller chooses among valid players/permanents. }
+
+  synergy.mechanics:
+    tokens: { desc: Token-focused strategies and payoffs (doublers, token makers, token count rewards). }
+    +1/+1_counters: { desc: Strictly cares about +1/+1 counters—placing, moving, counting, or scaling them. Excludes generic P/T modification, anthem effects, or -1/-1 counter synergies. }
+    proliferate: { desc: Increases existing counters on permanents/players (poison, experience, shield, loyalty, +1/+1). }
+    spellslinger: { desc: Rewards casting instants/sorceries or noncreature spells; includes magecraft-like triggers (Guttersnipe, Talrand). }
+    storm_count: { desc: Scales with the number of spells cast this turn (storm or storm-adjacent payoffs like Aetherflux Reservoir). }
+    etb_reset: { desc: Blink/flicker/phase or otherwise reset ETB/LTB abilities by leaving/returning the battlefield (Momentary Blink, Yorion). }
+    reanimator: { desc: Puts creatures/permanents from graveyard onto battlefield/hand or loops them repeatedly (Reanimate, Living Death). }
+    sacrifice_engines: { desc: Uses sacrificing your permanents as a cost/engine or provides payoffs for death/sacrifice (Viscera Seer engines, Blood Artist payoffs). }
+    lifegain: { desc: Life gain triggers/payoffs beyond incidental lifelink; values cards that convert life into cards/damage/counters (Ajani’s Pridemate, Heliod). }
+    landfall: { desc: Triggers specifically when lands enter under your control, or cards that multiply land ETBs (Lotus Cobra, Omnath). }
+    mill: { desc: Moves cards from library to graveyard (self-mill or opponent-mill) for payoff/plan (Glimpse the Unthinkable, Bruvac). }
+    discard: { desc: Rewards forcing discards or discarding as a cost with payoffs (Liliana, Waste Not, Madness/hellbent payoffs). }
+    artifact_matter: { desc: Cares about artifact count/type, affinity/improvise-like scaling, or artifact synergies (Urza, Thoughtcast). }
+    enchantress: { desc: Enchantment-density payoffs and cast/draw triggers specific to enchantments (Sythis, Enchantress’s Presence). }
+    equipment: { desc: Equipment-focused synergies (equip cost reduction, equipped creature rewards) distinct from auras (Puresteel Paladin, Colossus Hammer). }
+    auras: { desc: Aura-focused synergies (enchantress-like but specific to auras; aura recursion/protection) distinct from equipment (Kor Spiritdancer, Rancor). }
+    tax_effects: { desc: Pillowfort/hatebears effects taxing attacks/spells/abilities or restricting opponents (Ghostly Prison, Thalia). }
+    alt_cast_mechanics: { desc: Alternate/discounted casting or recursion from nonstandard zones (flashback, escape, delve, convoke, madness, cycling-as-casting-context). }
+    color_scaling: { desc: Effects that scale with number of basic land types/ colors among permanents/spells (domain, converge-like behaviors). }
+
+  derived_fields:
+    repeatability:
+      one_shot: { desc: Single resolution; effect doesn’t naturally recur without extra help (Lightning Bolt). }
+      repeatable: { desc: Can be reused with effort/cost or built-in activation/trigger (Capsize buyback, Eternal Witness via recursion/blink). }
+      permanent_engine: { desc: Sits in play and repeatedly generates value/pressure without extra casting (Rhystic Study, Necropotence). }
+
+    scalability:
+      low: { desc: Minimal scaling with player count/mana/board size (Lightning Bolt, Path to Exile). }
+      medium: { desc: Noticeably improves with game length/board development but not explosively (Beastmaster Ascension, Guardian Project). }
+      high: { desc: Strongly scales with multiplayer factors or extra mana/copies (Exsanguinate, Aetherflux Reservoir). }
+
+    synergy_intensity:
+      filler: { desc: Low-impact synergy role; advances plan but replaceable (Elvish Visionary in Elves). }
+      payoff: { desc: Rewards established synergy with significant output/scaling (Blood Artist, Ajani’s Pridemate). }
+      engine: { desc: Drives or enables the synergy repeatedly; often the piece others orbit around (Viscera Seer, Skullclamp). }

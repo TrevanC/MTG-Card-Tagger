@@ -1,0 +1,98 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "EDH Card Tag (Slim, v0.4.4)",
+    "type": "object",
+    "required": ["name", "oracle_id", "function_primary"],
+    "additionalProperties": false,
+    "properties": {
+      "name": { "type": "string", "minLength": 1 },
+      "oracle_id": { "type": "string", "minLength": 4 },
+  
+      "function_primary": {
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 2,
+        "uniqueItems": true,
+        "items": {
+          "type": "string",
+          "enum": ["ramp","card_advantage","removal","protection","win_condition","utility","recursion","tutor","stack_interaction","synergy_support"]
+        }
+      },
+  
+      "function_secondary": {
+        "type": "array",
+        "minItems": 0,
+        "maxItems": 5,
+        "uniqueItems": true,
+        "items": {
+          "type": "string",
+          "enum": ["mana_fixing","graveyard_hate","stax_tax","politics","combo_piece","board_wipe","targeted_removal","sweep_protection","tempo","setup","finisher","value_engine","tax_effects","combat_trick"]
+        }
+      },
+  
+      "resource_axis": {
+        "type": "array",
+        "minItems": 0,
+        "maxItems": 4,
+        "uniqueItems": true,
+        "items": {
+          "type": "string",
+          "enum": ["mana","cards","life","counters","tokens","treasures","clues","food","blood","lands","hand","library","graveyard","stack","battlefield"]
+        }
+      },
+  
+      "interaction_axis": {
+        "type": "array",
+        "minItems": 0,
+        "maxItems": 3,
+        "uniqueItems": true,
+        "items": {
+          "type": "string",
+          "enum": ["creatures","artifacts","enchantments","planeswalkers","lands","graveyards","spells_on_stack","hands","libraries"]
+        }
+      },
+  
+      "target_axis": {
+        "type": "array",
+        "minItems": 0,
+        "maxItems": 2,
+        "uniqueItems": true,
+        "items": {
+          "type": "string",
+          "enum": ["self","opponent","all","owner","any"]
+        }
+      },
+  
+      "synergy": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "mechanics": {
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 6,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": ["tokens","+1/+1_counters","proliferate","spellslinger","storm_count","etb_reset","reanimator","sacrifice_engines","lifegain","landfall","mill","discard","artifact_matter","enchantress","equipment","auras","tax_effects","alt_cast_mechanics","color_scaling"]
+            }
+          }
+        }
+      },
+  
+      "derived_fields": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "repeatability": { "type": "string", "enum": ["one_shot","repeatable","permanent_engine"] },
+          "scalability": { "type": "string", "enum": ["low","medium","high"] },
+          "synergy_intensity": { "type": "string", "enum": ["filler","payoff","engine"] }
+        }
+      },
+  
+
+  
+      "notes": { "type": "string" }
+    }
+  }
+  
